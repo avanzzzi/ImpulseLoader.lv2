@@ -247,7 +247,7 @@ runs:
       if: ${{ inputs.pawpaw == 'true' }}
       shell: bash
       run: |
-        git clone https://github.com/DISTRHO/PawPaw.git
+        git clone https://github.com/brummer10/PawPaw.git
         git -C PawPaw checkout ${{ env.PAWPAW_COMMIT_HASH }}
         echo t1
         ./PawPaw/.github/workflows/bootstrap-deps.sh ${{ env.PAWPAW_TARGET }}
