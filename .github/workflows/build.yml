@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         target: [linux-x86_64]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     permissions:
         contents: write
     steps:
@@ -45,7 +45,7 @@ jobs:
     strategy:
       matrix:
         target: [linux-x86_64]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     permissions:
         contents: write
     steps:
@@ -64,7 +64,7 @@ jobs:
     strategy:
       matrix:
         target: [linux-x86_64]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     permissions:
         contents: write
     steps:
