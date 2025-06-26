@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=0.2
+Type=Application
+Name=ImpulseLoader
+Comment=Impulse loader for Jack Audio Connection Kit
+Exec=ImpulseLoader
+Icon=ImpulseLoader
+Categories=AudioVideo;Audio;
+Terminal=false
+X-NSM-Capable=false
+X-NSM-Exec=ImpulseLoader
+Name[de_DE]=ImpulseLoader.desktop

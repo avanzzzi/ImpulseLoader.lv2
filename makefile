@@ -1,13 +1,15 @@
 
 include libxputty/Build/Makefile.base
 
-NOGOAL := mod install all features
+NOGOAL := uninstall install all features mod modapp standalone lv2 jack clap vst2
+
+SWITCHGOAL := all modapp standalone lv2 jack clap vst2
 
 PASS := features 
 
 SUBDIR := ImpulseLoader
 
-.PHONY: $(SUBDIR) libxputty  recurse mod 
+.PHONY: $(SUBDIR) libxputty  recurse
 
 $(MAKECMDGOALS) recurse: $(SUBDIR)
 
@@ -18,18 +20,25 @@ ifeq (,$(findstring clean,$(MAKECMDGOALS)))
 		echo "$(red)INFO: Need to reinitialize git submodules$(reset)"; \
 		git submodule update --init; \
 		echo "$(blue)Done$(reset)"; \
-	else echo "$(blue)Submodule up to date$(reset)"; \
+	else echo "$(blue) Submodule up to date$(reset)"; \
 	fi
 endif
 endif
 
 libxputty: check-and-reinit-submodules
 ifeq (,$(filter $(NOGOAL),$(MAKECMDGOALS)))
-ifeq (,$(wildcard ./libxputty/xputty/resources/texture.png))
-	@cp ./ImpulseLoader/Resources/*.png ./libxputty/xputty/resources/
+ifeq (,$(wildcard ./libxputty/xputty/resources/ImpulseLoader.png))
+	@cp ./ImpulseLoader/resources/*.png ./libxputty/xputty/resources/
 endif
 	@exec $(MAKE) --no-print-directory -j 1 -C $@ $(MAKECMDGOALS)
 endif
+ifneq (,$(filter $(SWITCHGOAL),$(MAKECMDGOALS)))
+ifeq (,$(wildcard ./libxputty/xputty/resources/ImpulseLoader.png))
+	@cp ./ImpulseLoader/resources/*.png ./libxputty/xputty/resources/
+endif
+	@exec $(MAKE) --no-print-directory -j 1 -C $@ all
+endif
+
 
 $(SUBDIR): libxputty
 ifeq (,$(filter $(PASS),$(MAKECMDGOALS)))
@@ -37,11 +46,10 @@ ifeq (,$(filter $(PASS),$(MAKECMDGOALS)))
 endif
 
 clean:
-	@rm -f ./libxputty/xputty/resources/texture.png
-	@rm -f ./libxputty/xputty/resources/dir.png
+	@rm -f ./libxputty/xputty/resources/menu.png
 	@rm -f ./libxputty/xputty/resources/norm.png
-
-mod:
-	@exec $(MAKE) --no-print-directory -j 1 -C Fluida $(MAKECMDGOALS)
+	@rm -f ./libxputty/xputty/resources/eject.png
+	@rm -f ./libxputty/xputty/resources/exit_.png
+	@rm -f ./libxputty/xputty/resources/ImpulseLoader.png
 
 features:

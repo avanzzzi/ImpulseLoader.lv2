@@ -1,8 +1,8 @@
 # ImpulseLoader
 
-This is a simple, mono, IR-File loader/convolution LV2 plug. 
+This is a simple, mono, IR-File loader/convolution LV2, clap, vst2 plug/ Stans-alone application. 
 
-![ImpulseLoader](https://raw.githubusercontent.com/brummer10/ImpulseLoader.lv2/master/ImpulseLoader.png)
+![ImpulseLoader](https://raw.githubusercontent.com/brummer10/ImpulseLoader/master/ImpulseLoader.png)
 
 A Stereo version of ImpulseLoader is here [ImpulseLoaderStereo](https://github.com/brummer10/ImpulseLoaderStereo.lv2)
 
@@ -29,11 +29,36 @@ IR-Files will be resampled on the fly to match the session Sample Rate.
 
 ## Build
 
-[![build](https://github.com/brummer10/ImpulseLoader.lv2/actions/workflows/build.yml/badge.svg)](https://github.com/brummer10/ImpulseLoader.lv2/actions/workflows/build.yml)
+[![build](https://github.com/brummer10/ImpulseLoader/actions/workflows/build.yml/badge.svg)](https://github.com/brummer10/ImpulseLoader/actions/workflows/build.yml)
 
-- git submodule init
-- git submodule update
-- make
-- make install # will install into ~/.lv2 ... AND/OR....
-- sudo make install # will install into /usr/lib/lv2
+To build ImpulseLoader only as standalone application run
+```shell
+make standalone
+```
+
+To build ImpulseLoader only as Clap plugin run
+```shell
+make clap
+```
+
+To build ImpulseLoader only as vst2 plugin run
+```shell
+make vst2
+```
+
+To build ImpulseLoader with all favours (currently as LV2, Clap and vst2 plugin and as standalone application) run
+```shell
+make
+```
+
+## Building LV2 plug from source code
+
+```shell
+git clone https://github.com/brummer10/ImpulseLoader
+git submodule init
+git submodule update
+make lv2 # build the LV2 plug
+make install # will install into ~/.lv2 ... AND/OR....
+sudo make install # will install into /usr/lib/lv2
+```
 
